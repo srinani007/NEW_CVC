@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Cincinnati Volleyball Club | Events</title>
+    <meta name="description" content="Upcoming events for Cincinnati Volleyball Club including tournaments, leagues, and social gatherings">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="logo.png" as="image">
+    <link rel="preload" href="qr-code.png" as="image">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script>
@@ -29,6 +35,11 @@
         }
     </script>
     <style>
+        /* Smooth scrolling */
+        html {
+          scroll-behavior: smooth;
+        }
+
         .content-overlay {
           position: relative;
           background: linear-gradient(135deg, rgba(246, 104, 2, 0.98) 0%, rgba(255,255,255,0.98) 100%);
@@ -66,19 +77,22 @@
         }
 
         .mobile-menu {
-          display: none;
+          max-height: 0;
+          overflow: hidden;
           background-color: rgba(17, 17, 17, 0.98);
           position: absolute;
           top: 100%;
           left: 0;
           right: 0;
-          padding: 1rem;
+          padding: 0 1rem;
           z-index: 100;
           backdrop-filter: blur(5px);
+          transition: max-height 0.3s ease-out;
         }
 
         .mobile-menu.active {
-          display: block;
+          max-height: 500px;
+          padding: 1rem;
           animation: fadeIn 0.3s ease-out;
         }
 
@@ -109,6 +123,29 @@
           transform: translateY(-2px);
           box-shadow: 0 10px 15px -3px rgba(242, 101, 34, 0.3);
         }
+
+        /* Accessibility focus states */
+        a:focus, button:focus {
+          outline: 2px solid #f26522;
+          outline-offset: 2px;
+        }
+
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+          }
+        }
+
+        /* View transitions */
+        @supports (view-transition-name: none) {
+          .event-poster {
+            view-transition-name: event-poster;
+          }
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800">
@@ -120,8 +157,12 @@
     <header class="bg-cvcDark text-white sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <a href="index.html" class="flex items-center">
-                    <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 hover:opacity-90 transition" />
+                <a href="index.html" class="flex items-center focus:outline-none">
+                    <picture>
+                        <source srcset="logo.webp" type="image/webp">
+                        <source srcset="logo.png" type="image/png">
+                        <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 hover:opacity-90 transition" loading="eager">
+                    </picture>
                     <span class="text-xl font-bold text-cvcOrange">Cincinnati Volleyball Club</span>
                 </a>
             </div>
@@ -132,130 +173,133 @@
                 <a href="contact.html" class="text-white hover:text-cvcOrange nav-link">Contact</a>
             </nav>
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-cvcOrange animate__animated animate__fadeIn">☰</button>
+                <button id="menu-toggle" class="text-cvcOrange animate__animated animate__fadeIn focus:outline-none" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
             </div>
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu">
-            <a href="index.html">Home</a>
-            <a href="events.html" class="font-bold">Events</a>
-            <a href="layout.html">Sponsors</a>
-            <a href="contact.html">Contact</a>
+            <div class="flex flex-col space-y-3">
+                <a href="index.html" class="text-white hover:text-cvcOrange py-2 px-1">Home</a>
+                <a href="events.html" class="text-white hover:text-cvcOrange py-2 px-1 font-bold">Events</a>
+                <a href="layout.html" class="text-white hover:text-cvcOrange py-2 px-1">Sponsors</a>
+                <a href="contact.html" class="text-white hover:text-cvcOrange py-2 px-1">Contact</a>
+            </div>
         </div>
     </header>
 
     <!-- Main Event Section -->
-    <section class="flex-1 py-12 px-4">
+    <main class="flex-1 py-8 px-4">
         <div class="container mx-auto">
-            <h1 class="text-4xl md:text-5xl font-bold text-center text-cvcDark mb-12 animate__animated animate__fadeIn">Upcoming Events</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-center text-cvcDark mb-8 animate__animated animate__fadeIn">Upcoming Events</h1>
 
             <!-- Volleyball Tournament Poster -->
-            <div class="event-poster max-w-3xl mx-auto p-8 md:p-12 text-white animate__animated animate__fadeInUp">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-2">CINCINNATI VOLLEYBALL CLUB PRESENTS</h2>
-                    <h3 class="text-5xl md:text-6xl font-extrabold mb-6">VOLLEYBALL TOURNAMENT</h3>
-
-                    <div class="flex justify-center mb-8">
-                        <div class="qr-code bg-white p-2 rounded-lg">
-                            <img src="qr-code.png" alt="Scan to Register" class="w-48 h-48">
-                            <p class="text-cvcDark font-bold mt-2">Scan to Register</p>
-                        </div>
-                    </div>
-
-                    <p class="text-xl md:text-2xl font-bold mb-6">FOOD AND DRINKS WILL BE PROVIDED BOTH DAYS</p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                        <div>
-                            <h4 class="text-2xl font-bold mb-2">WELCOME PARTY</h4>
-                            <p class="text-xl">FRIDAY - MAY 16 @5:00 PM</p>
-                        </div>
-                        <div>
-                            <h4 class="text-2xl font-bold mb-2">TOURNAMENT DAY</h4>
-                            <p class="text-xl">SATURDAY, MAY 17 @8:00 AM</p>
-                        </div>
-                    </div>
-
-                    <p class="text-2xl font-bold mb-6">Registration Fee: $350.00</p>
-                    <a href="https://register.cincyvolleyballclub.com" class="inline-block btn-hover bg-white text-cvcOrange px-8 py-3 rounded-lg font-bold text-lg mb-8">REGISTER NOW</a>
+            <div class="event-poster max-w-3xl mx-auto p-6 md:p-8 text-white animate__animated animate__fadeInUp grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="md:col-span-2 text-center">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-1">CINCINNATI VOLLEYBALL CLUB PRESENTS</h2>
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4">VOLLEYBALL TOURNAMENT</h3>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="flex flex-col justify-between">
                     <div>
-                        <h4 class="text-xl font-bold mb-4">VENUE FOR BOTH DAYS</h4>
-                        <p class="text-lg">SPORTS EXPRESS</p>
-                        <p class="text-lg">7280 OH-741</p>
-                        <p class="text-lg">MASON, OH 45040</p>
-                        <p class="text-lg">I-71, EXIT 25</p>
+                        <h4 class="text-xl font-bold mb-2">WELCOME PARTY</h4>
+                        <p class="text-lg">FRIDAY - MAY 16 @5:00 PM</p>
+
+                        <h4 class="text-xl font-bold mt-4 mb-2">TOURNAMENT DAY</h4>
+                        <p class="text-lg">SATURDAY, MAY 17 @8:00 AM</p>
+
+                        <p class="text-xl font-bold mt-6">Registration Fee: $350.00</p>
+                        <a href="https://register.cincyvolleyballclub.com"
+                           class="inline-block btn-hover bg-white text-cvcOrange px-6 py-2 rounded-lg font-bold text-md mt-4 focus:outline-none">
+                            REGISTER NOW
+                        </a>
+                    </div>
+
+                    <div class="mt-6">
+                        <h4 class="text-xl font-bold mb-2">VENUE FOR BOTH DAYS</h4>
+                        <p class="text-md">SPORTS EXPRESS</p>
+                        <p class="text-md">7280 OH-741, MASON, OH 45040</p>
+                        <p class="text-md">I-71, EXIT 25</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center justify-between">
+                    <div class="qr-code bg-white p-2 rounded-lg mb-4">
+                        <img src="QRCODE%20CVC.png" alt="Scan to Register" class="w-32 h-32" loading="lazy">
+                        <p class="text-cvcDark font-bold mt-2 text-center">Scan to Register</p>
                     </div>
 
                     <div>
-                        <h4 class="text-xl font-bold mb-4">CONTACT</h4>
-                        <p class="text-lg">ROCKY: 513-348-0990</p>
-                        <p class="text-lg">SNEHAL "Tino": 361-231-5000</p>
-                        <p class="text-lg">DIXIT: 859-814-9914</p>
-                        <p class="text-lg">SNEHAL: 513-633-6071</p>
-                        <p class="text-lg">BHAVIN: 937-537-3300</p>
-                        <p class="text-lg">CINCYVOLLEYBALLCLUB@GMAIL.COM</p>
+                        <h4 class="text-xl font-bold mb-2">CONTACT</h4>
+                        <p class="text-sm md:text-md">ROCKY: 513-348-0990</p>
+                        <p class="text-sm md:text-md">SNEHAL "Tino": 361-231-5000</p>
+                        <p class="text-sm md:text-md">DIXIT: 859-814-9914</p>
+                        <p class="text-sm md:text-md">SNEHAL: 513-633-6071</p>
+                        <p class="text-sm md:text-md">BHAVIN: 937-537-3300</p>
+                        <p class="text-sm md:text-md">CINCYVOLLEYBALLCLUB@GMAIL.COM</p>
                     </div>
+                </div>
+
+                <div class="md:col-span-2 text-center">
+                    <p class="text-lg font-bold">FOOD AND DRINKS WILL BE PROVIDED BOTH DAYS</p>
                 </div>
             </div>
 
             <!-- Additional Events -->
-            <div class="max-w-4xl mx-auto mt-16">
-                <h2 class="text-3xl font-bold text-cvcDark mb-8 text-center">Other Events</h2>
+            <div class="max-w-4xl mx-auto mt-12">
+                <h2 class="text-2xl font-bold text-cvcDark mb-6 text-center">Other Events</h2>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Golf Tournament -->
                     <div class="glass-card p-6">
-                        <h3 class="text-2xl font-bold text-cvcOrange mb-4">5th Annual Golf Tournament</h3>
-                        <div class="flex items-center mb-4">
+                        <h3 class="text-xl font-bold text-cvcOrange mb-3">5th Annual Golf Tournament</h3>
+                        <div class="flex items-center mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cvcOrange mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                             <span>June 28-29, 2025</span>
                         </div>
-                        <div class="flex items-center mb-4">
+                        <div class="flex items-center mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cvcOrange mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                             <span>Glenview Golf Course, Cincinnati, OH</span>
                         </div>
-                        <p class="mb-4">Join us for our annual golf tournament with lunch, dinner, and drinks provided.</p>
-                        <a href="#" class="btn-hover inline-block bg-cvcOrange text-white px-6 py-2 rounded-lg font-bold">Learn More</a>
+                        <p class="mb-4 text-sm">Join us for our annual golf tournament with lunch, dinner, and drinks provided.</p>
+                        <a href="#" class="btn-hover inline-block bg-cvcOrange text-white px-4 py-2 rounded-lg font-bold text-sm focus:outline-none">Learn More</a>
                     </div>
 
                     <!-- Summer League -->
                     <div class="glass-card p-6">
-                        <h3 class="text-2xl font-bold text-cvcOrange mb-4">Summer Volleyball League</h3>
-                        <div class="flex items-center mb-4">
+                        <h3 class="text-xl font-bold text-cvcOrange mb-3">Summer Volleyball League</h3>
+                        <div class="flex items-center mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cvcOrange mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                             <span>July 12 - August 30, 2025</span>
                         </div>
-                        <div class="flex items-center mb-4">
+                        <div class="flex items-center mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cvcOrange mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                             <span>Sports Express, Mason, OH</span>
                         </div>
-                        <p class="mb-4">Weekly matches every Wednesday evening. Open to all skill levels.</p>
-                        <a href="#" class="btn-hover inline-block bg-cvcOrange text-white px-6 py-2 rounded-lg font-bold">Learn More</a>
+                        <p class="mb-4 text-sm">Weekly matches every Wednesday evening. Open to all skill levels.</p>
+                        <a href="#" class="btn-hover inline-block bg-cvcOrange text-white px-4 py-2 rounded-lg font-bold text-sm focus:outline-none">Learn More</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-cvcDark text-center py-8 text-white">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
-                    <a href="index.html" class="flex items-center justify-center md:justify-start">
-                        <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 mr-2" />
+                    <a href="index.html" class="flex items-center justify-center md:justify-start focus:outline-none">
+                        <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 mr-2" loading="lazy"/>
                         <span class="text-xl font-bold text-cvcOrange">Cincinnati Volleyball Club</span>
                     </a>
                     <p class="mt-2 text-sm">Building community through sports since 2008</p>
@@ -263,17 +307,17 @@
 
                 <div class="flex flex-col items-center md:items-end">
                     <div class="flex space-x-4 mb-4">
-                        <a href="#" class="text-white hover:text-cvcOrange transition-colors">
+                        <a href="#" class="text-white hover:text-cvcOrange transition-colors focus:outline-none" aria-label="Facebook">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
                             </svg>
                         </a>
-                        <a href="#" class="text-white hover:text-cvcOrange transition-colors">
+                        <a href="#" class="text-white hover:text-cvcOrange transition-colors focus:outline-none" aria-label="Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                             </svg>
                         </a>
-                        <a href="#" class="text-white hover:text-cvcOrange transition-colors">
+                        <a href="#" class="text-white hover:text-cvcOrange transition-colors focus:outline-none" aria-label="Twitter">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
                             </svg>
@@ -284,15 +328,54 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-cvcOrange text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 focus:outline-none" aria-label="Back to top">
+        ↑
+    </button>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="fixed bottom-0 left-0 right-0 bg-cvcOrange text-white py-3 px-4 shadow-lg md:hidden z-50">
+        <a href="https://register.cincyvolleyballclub.com" class="flex justify-between items-center focus:outline-none">
+            <span class="font-bold">Register Now</span>
+            <span class="bg-white text-cvcOrange px-3 py-1 rounded-lg font-bold">$350</span>
+        </a>
+    </div>
 </div>
 
 <script>
-    // Simple mobile menu toggle
+    // Improved mobile menu toggle with better accessibility
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
 
     menuToggle.addEventListener("click", () => {
-        mobileMenu.classList.toggle("active");
+        const isExpanded = mobileMenu.classList.toggle("active");
+        menuToggle.setAttribute("aria-expanded", isExpanded);
+        menuToggle.textContent = isExpanded ? "✕" : "☰";
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            mobileMenu.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.textContent = "☰";
+        }
+    });
+
+    // Back to top button
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.remove('opacity-0', 'invisible');
+            backToTop.classList.add('opacity-100', 'visible');
+        } else {
+            backToTop.classList.add('opacity-0', 'invisible');
+            backToTop.classList.remove('opacity-100', 'visible');
+        }
+    });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 </script>
 </body>
