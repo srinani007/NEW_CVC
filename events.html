@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cincinnati Volleyball Club | Events</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                cvcOrange: '#f26522',
+                cvcDark: '#111111',
+                cvcLight: '#f8f8f8',
+              },
+              animation: {
+                'fade-in': 'fadeIn 0.5s ease-in',
+              },
+              keyframes: {
+                fadeIn: {
+                  '0%': { opacity: '0' },
+                  '100%': { opacity: '1' },
+                }
+              }
+            }
+          }
+        }
+    </script>
+    <style>
+        .content-overlay {
+          position: relative;
+          background: linear-gradient(135deg, rgba(246, 104, 2, 0.98) 0%, rgba(255,255,255,0.98) 100%);
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .glass-card {
+          background: rgba(255, 255, 255, 0.85);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        .nav-link {
+          position: relative;
+        }
+
+        .nav-link:after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: -2px;
+          left: 0;
+          background-color: #f26522;
+          transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after {
+          width: 100%;
+        }
+
+        .mobile-menu {
+          display: none;
+          background-color: rgba(17, 17, 17, 0.98);
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          padding: 1rem;
+          z-index: 100;
+          backdrop-filter: blur(5px);
+        }
+
+        .mobile-menu.active {
+          display: block;
+          animation: fadeIn 0.3s ease-out;
+        }
+
+        .event-poster {
+          background: linear-gradient(135deg, #f26522 0%, #f8a145 100%);
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+          overflow: hidden;
+        }
+
+        .qr-code {
+          border: 8px solid white;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+          transition: all 0.3s ease;
+        }
+
+        .qr-code:hover {
+          transform: scale(1.05);
+          box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-hover {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transform: translateY(0);
+        }
+
+        .btn-hover:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 15px -3px rgba(242, 101, 34, 0.3);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800">
+
+<!-- Main Content -->
+<div class="content-overlay">
+
+    <!-- Navbar -->
+    <header class="bg-cvcDark text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center">
+                    <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 hover:opacity-90 transition" />
+                    <span class="text-xl font-bold text-cvcOrange">Cincinnati Volleyball Club</span>
+                </a>
+            </div>
+            <nav class="desktop-menu space-x-6 hidden md:flex">
+                <a href="index.html" class="text-white hover:text-cvcOrange nav-link">Home</a>
+                <a href="events.html" class="text-white hover:text-cvcOrange nav-link font-bold">Events</a>
+                <a href="layout.html" class="text-white hover:text-cvcOrange nav-link">Sponsors</a>
+                <a href="contact.html" class="text-white hover:text-cvcOrange nav-link">Contact</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-cvcOrange animate__animated animate__fadeIn">☰</button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="index.html">Home</a>
+            <a href="events.html" class="font-bold">Events</a>
+            <a href="layout.html">Sponsors</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Event Section -->
+    <section class="flex-1 py-12 px-4">
+        <div class="container mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold text-center text-cvcDark mb-12 animate__animated animate__fadeIn">Upcoming Events</h1>
+
+            <!-- Volleyball Tournament Poster -->
+            <div class="event-poster max-w-3xl mx-auto p-8 md:p-12 text-white animate__animated animate__fadeInUp">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">CINCINNATI VOLLEYBALL CLUB PRESENTS</h2>
+                    <h3 class="text-5xl md:text-6xl font-extrabold mb-6">VOLLEYBALL TOURNAMENT</h3>
+
+                    <div class="flex justify-center mb-8">
+                        <div class="qr-code bg-white p-2 rounded-lg">
+                            <img src="qr-code.png" alt="Scan to Register" class="w-48 h-48">
+                            <p class="text-cvcDark font-bold mt-2">Scan to Register</p>
+                        </div>
+                    </div>
+
+                    <p class="text-xl md:text-2xl font-bold mb-6">FOOD AND DRINKS WILL BE PROVIDED BOTH DAYS</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-2xl font-bold mb-2">WELCOME PARTY</h4>
+                            <p class="text-xl">FRIDAY - MAY 16 @5:00 PM</p>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl font-bold mb-2">TOURNAMENT DAY</h4>
+                            <p class="text-xl">SATURDAY, MAY 17 @8:00 AM</p>
+                        </div>
+                    </div>
+
+                    <p class="text-2xl font-bold mb-6">Registration Fee: $350.00</p>
+                    <a href="https://register.cincyvolleyballclub.com" class="inline-block btn-hover bg-white text-cvcOrange px-8 py-3 rounded-lg font-bold text-lg mb-8">REGISTER NOW</a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">VENUE FOR BOTH DAYS</h4>
+                        <p class="text-lg">SPORTS EXPRESS</p>
+                        <p class="text-lg">7280 OH-741</p>
+                        <p class="text-lg">MASON, OH 45040</p>
+                        <p class="text-lg">I-71, EXIT 25</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">CONTACT</h4>
+                        <p class="text-lg">ROCKY: 513-348-0990</p>
+                        <p class="text-lg">SNEHAL "Tino": 361-231-5000</p>
+                        <p class="text-lg">DIXIT: 859-814-9914</p>
+                        <p class="text-lg">SNEHAL: 513-633-6071</p>
+                        <p class="text-lg">BHAVIN: 937-537-3300</p>
+                        <p class="text-lg">CINCYVOLLEYBALLCLUB@GMAIL.COM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Events -->
+            <div class="max-w-4xl mx-auto mt-16">
+                <h2 class="text-3xl font-bold text-cvcDark mb-8 text-center">Other Events</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Golf Tournament -->
+                    <div class="glass-card p-6">
+                        <h3 class="text-2xl font-bold text-cvcOrange mb-4">5th Annual Golf Tournament</h3>
+                        <div class="flex items-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cvcOrange mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span>June 28-29, 2025</span>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cvcOrange mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>Glenview Golf Course, Cincinnati, OH</span>
+                        </div>
+                        <p class="mb-4">Join us for our annual golf tournament with lunch, dinner, and drinks provided.</p>
+                        <a href="#" class="btn-hover inline-block bg-cvcOrange text-white px-6 py-2 rounded-lg font-bold">Learn More</a>
+                    </div>
+
+                    <!-- Summer League -->
+                    <div class="glass-card p-6">
+                        <h3 class="text-2xl font-bold text-cvcOrange mb-4">Summer Volleyball League</h3>
+                        <div class="flex items-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cvcOrange mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span>July 12 - August 30, 2025</span>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cvcOrange mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>Sports Express, Mason, OH</span>
+                        </div>
+                        <p class="mb-4">Weekly matches every Wednesday evening. Open to all skill levels.</p>
+                        <a href="#" class="btn-hover inline-block bg-cvcOrange text-white px-6 py-2 rounded-lg font-bold">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cvcDark text-center py-8 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="index.html" class="flex items-center justify-center md:justify-start">
+                        <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 mr-2" />
+                        <span class="text-xl font-bold text-cvcOrange">Cincinnati Volleyball Club</span>
+                    </a>
+                    <p class="mt-2 text-sm">Building community through sports since 2008</p>
+                </div>
+
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-white hover:text-cvcOrange transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-white hover:text-cvcOrange transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-white hover:text-cvcOrange transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="text-sm">&copy; 2025 Cincinnati Volleyball Club. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Simple mobile menu toggle
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("active");
+    });
+</script>
+</body>
+</html>

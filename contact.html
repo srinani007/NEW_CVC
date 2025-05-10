@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>About & Contact | Cincinnati Volleyball Club</title>
+    <script src="https://cdn.tailwindcss.com" ></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                cvcOrange: '#f26522',
+                cvcDark: '#111111',
+                cvcLight: '#f8f8f8',
+              }
+            }
+          }
+        }
+    </script>
+    <style>
+        .mobile-menu {
+            display: none;
+        }
+        .mobile-menu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-cvcLight text-gray-800 font-sans">
+
+<!-- Header -->
+<header class="bg-cvcDark text-white sticky top-0 z-50 shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <a href="index.html" class="flex items-center">
+                <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 hover:opacity-90 transition" />
+                <span class="text-xl font-bold text-cvcOrange">Cincinnati Volleyball Club</span>
+            </a>
+        </div>
+        <nav class="space-x-4 hidden md:flex">
+            <a href="index.html" class="hover:text-cvcOrange">Home</a>
+            <a href="events.html" class="hover:text-cvcOrange">Events</a>
+            <a href="#" class="text-cvcOrange font-semibold">About & Contact</a>
+        </nav>
+        <div class="md:hidden">
+            <button id="menu-toggle" class="text-cvcOrange text-xl">☰</button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu hidden bg-cvcDark text-white px-4 py-2">
+        <a href="index.html" class="block py-2">Home</a>
+        <a href="events.html" class="block py-2">Events</a>
+        <a href="#" class="block py-2 text-cvcOrange">About & Contact</a>
+    </div>
+</header>
+
+<!-- About Section -->
+<section class="container mx-auto px-4 py-12 max-w-5xl">
+    <h2 class="text-4xl font-bold text-center text-cvcOrange mb-6">About Cincinnati Volleyball Club</h2>
+    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+        Cincinnati Volleyball Club (CVC) is a passionate community of volleyball enthusiasts located in the heart of Ohio. Established to promote competitive and recreational volleyball, CVC offers a platform for players of all skill levels to connect, grow, and compete.
+    </p>
+    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+        We proudly host the <strong>17th Annual Volleyball Tournament</strong> and <strong>5th Annual Golf Tournament</strong> in 2025, bringing together over 50 teams and approximately 600 participants from major Mid-Western cities including Columbus, Cleveland, Chicago, Indianapolis, Detroit, Nashville, Louisville, Lexington, Memphis, and Atlanta.
+    </p>
+    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+        Our events provide excellent sponsorship opportunities for businesses looking to engage with the community and market to a targeted audience of hotel owners and sports enthusiasts.
+    </p>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="bg-white rounded-xl shadow-lg p-8 mb-16 container mx-auto max-w-6xl">
+    <h2 class="text-3xl font-bold mb-8 text-center text-cvcDark">Contact Us</h2>
+
+    <div class="max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Sponsorship Inquiries</h3>
+                <p class="mb-4">Thank you for supporting our club's events. For more information, please contact the Cincinnati Volleyball Committee:</p>
+                <p class="mb-2"><strong>Email:</strong> <a href="mailto:cincyvolleyballclub@gmail.com" class="text-cvcOrange hover:underline">cincyvolleyballclub@gmail.com</a></p>
+                <p class="mb-4"><strong>Payment:</strong> Please make check payable to: Cincinnati Volleyball Club</p>
+                <p><strong>Mailing Address:</strong><br>Rakesh Patel<br>8151 Vegas Ct.<br>West Chester, OH 45069</p>
+
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Special 2025 Incentive</h3>
+                    <p class="mb-2">Sponsors contributing $3,000+ will automatically receive a spot as a sponsor at the Annual Golf Tournament at no additional cost!</p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Committee Members</h3>
+                <ul class="space-y-2">
+                    <li><strong>Rocky:</strong> 513-348-0990</li>
+                    <li><strong>Dixit:</strong> 859-814-9914</li>
+                    <li><strong>Bhavesh:</strong> 513-349-3913</li>
+                    <li><strong>Snehal:</strong> 513-633-6071</li>
+                    <li><strong>Snehal (Tino):</strong> 361-231-5000</li>
+                    <li><strong>Bhavin:</strong> 937-537-3300</li>
+                    <li><strong>Robin:</strong> 513-226-7344</li>
+                </ul>
+
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Upcoming Events</h3>
+                    <p class="mb-2"><strong>17th CVC Volleyball Tournament:</strong><br>
+                        May 16-17, 2025<br>
+                        Sports Express, Mason, OH</p>
+                    <p class="mb-2"><strong>5th CVC Golf Tournament:</strong><br>
+                        June 28-29, 2025<br>
+                        Glennview Golf Course, Cincinnati, OH</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-cvcDark text-white text-center py-6 mt-10 text-sm">
+    &copy; 2025 Cincinnati Volleyball Club. All rights reserved.
+</footer>
+
+<!-- Scripts -->
+<script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+</script>
+
+</body>
+</html>

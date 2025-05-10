@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Register Team | Cincinnati Volleyball Club</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                cvcOrange: '#f26522',
+                cvcDark: '#111111',
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+<!-- Header -->
+<header class="bg-cvcDark text-white sticky top-0 z-50 shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <a href="index.html" class="flex items-center">
+                <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 hover:opacity-90 transition" />
+                <span class="text-xl font-bold text-cvcOrange">Cincinnati Volleyball Club</span>
+            </a>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="space-x-4 hidden md:flex">
+            <a href="index.html" class="hover:text-cvcOrange">Home</a>
+            <a href="events.html" class="hover:text-cvcOrange">Events</a>
+            <a href="contact.html" class="hover:text-cvcOrange">Contact</a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="md:hidden">
+            <button id="menu-toggle" class="text-cvcOrange text-xl">☰</button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-cvcDark text-white">
+        <a href="index.html" class="block px-4 py-2">Home</a>
+        <a href="events.html" class="block px-4 py-2">Events</a>
+        <a href="contact.html" class="block px-4 py-2">Contact</a>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="bg-cvcOrange text-white py-12 text-center">
+    <h2 class="text-3xl font-bold mb-2">Spring Tournament – May 17, 2025</h2>
+    <p class="text-lg">Complete the form below to register your team!</p>
+</section>
+
+<!-- Form -->
+<main class="container mx-auto px-4 py-12 max-w-2xl">
+    <form id="registrationForm" class="bg-white p-6 rounded shadow-lg space-y-4 border border-cvcOrange">
+        <input type="text" id="teamName" placeholder="Team Name" required class="w-full border px-4 py-2 rounded" />
+        <input type="text" id="ageGroup" placeholder="Age Group (e.g., U16, U18)" required class="w-full border px-4 py-2 rounded" />
+        <input type="text" id="coachName" placeholder="Coach Name" required class="w-full border px-4 py-2 rounded" />
+        <input type="email" id="email" placeholder="Coach Email" required class="w-full border px-4 py-2 rounded" />
+        <input type="tel" id="phone" placeholder="Coach Phone" required class="w-full border px-4 py-2 rounded" />
+        <textarea id="playerList" placeholder="List of Player Names (comma separated)" rows="4" required class="w-full border px-4 py-2 rounded"></textarea>
+
+        <button type="submit" class="w-full bg-cvcOrange hover:bg-orange-700 text-white font-semibold px-6 py-3 rounded transition">
+            Submit Registration
+        </button>
+    </form>
+
+    <p id="successMsg" class="text-green-600 mt-4 hidden text-center">✅ Registration submitted successfully!</p>
+</main>
+
+<!-- Footer -->
+<footer class="bg-cvcDark text-white text-center py-6 text-sm">
+    &copy; 2025 Cincinnati Volleyball Club. All rights reserved.
+</footer>
+
+<script>
+    // Mobile Menu Toggle Script
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+    });
+
+    // Form submission logic
+    const form = document.getElementById("registrationForm");
+    const successMsg = document.getElementById("successMsg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const payload = {
+        teamName: document.getElementById("teamName").value,
+        ageGroup: document.getElementById("ageGroup").value,
+        coachName: document.getElementById("coachName").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        playerList: document.getElementById("playerList").value,
+      };
+
+      try {
+        const response = await fetch("/api/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (response.ok) {
+          form.reset();
+          successMsg.classList.remove("hidden");
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Server error.");
+      }
+    });
+</script>
+
+</body>
+</html>
