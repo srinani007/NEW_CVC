@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Join the 2025 Volleyball & Golf Tournaments organized by Cincinnati Volleyball Club. Sponsorship opportunities available.">
     <title>2025 Volleyball & Golf Tournament | Cincinnati Volleyball Club</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,34 +52,78 @@
         .nav-link:hover:after {
             width: 100%;
         }
+        /* Mobile menu animation */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        /* Back to top button */
+        .back-to-top {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Remove hover effects on touch devices */
+        @media (hover: none) {
+            .sponsor-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
     </style>
 </head>
 <body class="font-sans bg-cvcLight text-gray-800">
+
+<!-- Skip to content link for accessibility -->
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:z-50">Skip to main content</a>
 
 <!-- Header (Navbar) -->
 <header class="bg-cvcDark sticky top-0 z-50 shadow-lg">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
         <div class="flex items-center space-x-3">
-            <a href="index.html" class="flex items-center">
+            <a href="index.html" class="flex items-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcDark rounded">
                 <div class="bg-cvcOrange p-2 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                     </svg>
                 </div>
                 <span class="text-xl font-bold text-white ml-2">Cincinnati Volleyball Club</span>
             </a>
         </div>
+
+        <!-- Desktop Navigation -->
         <nav class="hidden md:flex space-x-8">
             <a href="index.html" class="text-white nav-link font-medium">Home</a>
             <a href="#events" class="text-white nav-link font-medium">Events</a>
             <a href="#sponsors" class="text-white nav-link font-medium">Sponsorships</a>
-            <a href="contact.html" class="text-white nav-link font-medium">Contact</a>
+            <a href="#contact" class="text-white nav-link font-medium">Contact</a>
         </nav>
-        <button class="md:hidden text-white">
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-cvcDark">
+        <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+            <a href="index.html" class="text-white font-medium py-2">Home</a>
+            <a href="#events" class="text-white font-medium py-2">Events</a>
+            <a href="#sponsors" class="text-white font-medium py-2">Sponsorships</a>
+            <a href="#contact" class="text-white font-medium py-2">Contact</a>
+        </div>
     </div>
 </header>
 
@@ -87,15 +132,15 @@
     <div class="container mx-auto px-4 text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">2025 Tournament Events</h1>
         <p class="text-xl md:text-2xl font-medium mb-8">17th Annual Volleyball Tournament & 5th Annual Golf Tournament</p>
-        <div class="flex justify-center space-x-4">
-            <a href="#sponsors" class="bg-white text-cvcOrange px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition duration-300">Become a Sponsor</a>
-            <a href="#events" class="border-2 border-white text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-cvcOrange transition duration-300">Event Details</a>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="#sponsors" class="bg-white text-cvcOrange px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcOrange">Become a Sponsor</a>
+            <a href="#events" class="border-2 border-white text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-cvcOrange transition duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcOrange">Event Details</a>
         </div>
     </div>
 </section>
 
 <!-- Main Content Section -->
-<div class="container mx-auto px-4 py-12">
+<main id="main-content" class="container mx-auto px-4 py-12">
 
     <!-- About Section -->
     <section class="mb-16">
@@ -118,7 +163,7 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="bg-cvcLight p-6 rounded-lg">
                     <div class="bg-cvcOrange w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                     </div>
@@ -128,7 +173,7 @@
 
                 <div class="bg-cvcLight p-6 rounded-lg">
                     <div class="bg-cvcOrange w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                         </svg>
                     </div>
@@ -138,7 +183,7 @@
 
                 <div class="bg-cvcLight p-6 rounded-lg">
                     <div class="bg-cvcOrange w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                     </div>
@@ -150,7 +195,7 @@
             <div class="mt-10 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
                 <div class="flex">
                     <div class="flex-shrink-0">
-                        <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                         </svg>
                     </div>
@@ -235,19 +280,19 @@
                 <div class="p-6">
                     <ul class="space-y-3">
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Banner and Premium Booth at Both Tournaments</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>5-10 minutes of Podium Time</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Present Trophy to the Winning Team</span>
@@ -265,19 +310,19 @@
                 <div class="p-6">
                     <ul class="space-y-3">
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Banner and Premium Booth at Both Tournaments</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>2 Minutes of Podium Time</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Present Trophy to the Runner-Up Team</span>
@@ -295,13 +340,13 @@
                 <div class="p-6">
                     <ul class="space-y-3">
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Banner and Booth at Both Tournaments</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>2 Minutes of Podium Time</span>
@@ -319,13 +364,13 @@
                 <div class="p-6">
                     <ul class="space-y-3">
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Banner and Booth at Both Tournaments</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Includes Golf Tournament Sponsorship</span>
@@ -343,7 +388,7 @@
                 <div class="p-6">
                     <ul class="space-y-3">
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Banner and Booth at One Tournament Only</span>
@@ -361,7 +406,7 @@
                 <div class="p-6">
                     <ul class="space-y-3">
                         <li class="flex items-start">
-                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                             </svg>
                             <span>Banner for Both Tournaments</span>
@@ -381,28 +426,39 @@
                 <div>
                     <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Sponsorship Inquiries</h3>
                     <p class="mb-4">Thank you for supporting our club's events. For more information, please contact the Cincinnati Volleyball Committee:</p>
-                    <p class="mb-2"><strong>Email:</strong> <a href="mailto:cincyvolleyballclub@gmail.com" class="text-cvcOrange hover:underline">cincyvolleyballclub@gmail.com</a></p>
+                    <p class="mb-2"><strong>Email:</strong> <a href="mailto:cincyvolleyballclub@gmail.com" class="text-cvcOrange hover:underline focus:outline-none focus:ring-2 focus:ring-cvcOrange focus:ring-offset-2 focus:ring-offset-white rounded">cincyvolleyballclub@gmail.com</a></p>
                     <p class="mb-4"><strong>Payment:</strong> Please make check payable to: Cincinnati Volleyball Club</p>
-                    <p><strong>Mailing Address:</strong><br>Rakesh Patel<br>8151 Vegas Ct.<br>West Chester, OH 45069</p>
+                    <address class="not-italic">
+                        <strong>Mailing Address:</strong><br>Rakesh Patel<br>8151 Vegas Ct.<br>West Chester, OH 45069
+                    </address>
                 </div>
 
                 <div>
                     <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Committee Members</h3>
                     <ul class="space-y-2">
-                        <li><strong>Rocky:</strong> 513-348-0990</li>
-                        <li><strong>Dixit:</strong> 859-814-9914</li>
-                        <li><strong>Bhavesh:</strong> 513-349-3913</li>
-                        <li><strong>Snehal:</strong> 513-633-6071</li>
-                        <li><strong>Snehal (Tino):</strong> 361-231-5000</li>
-                        <li><strong>Bhavin:</strong> 937-537-3300</li>
-                        <li><strong>Robin:</strong> 513-226-7344</li>
+                        <li><strong>Rocky:</strong> <a href="tel:513-348-0990" class="hover:underline">513-348-0990</a></li>
+                        <li><strong>Dixit:</strong> <a href="tel:859-814-9914" class="hover:underline">859-814-9914</a></li>
+                        <li><strong>Bhavesh:</strong> <a href="tel:513-349-3913" class="hover:underline">513-349-3913</a></li>
+                        <li><strong>Snehal:</strong> <a href="tel:513-633-6071" class="hover:underline">513-633-6071</a></li>
+                        <li><strong>Snehal (Tino):</strong> <a href="tel:361-231-5000" class="hover:underline">361-231-5000</a></li>
+                        <li><strong>Bhavin:</strong> <a href="tel:937-537-3300" class="hover:underline">937-537-3300</a></li>
+                        <li><strong>Robin:</strong> <a href="tel:513-226-7344" class="hover:underline">513-226-7344</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-</div>
+</main>
+
+<!-- Continue from previous code -->
+
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top fixed bottom-8 right-8 bg-cvcOrange text-white p-3 rounded-full shadow-lg hover:bg-orange-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcOrange" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+    </svg>
+</button>
 
 <!-- Footer -->
 <footer class="bg-cvcDark text-white py-8">
@@ -413,63 +469,116 @@
                 <p>Building community through sports</p>
             </div>
             <div class="flex space-x-6">
-                <a href="#" class="text-white hover:text-cvcOrange transition duration-300">
+                <a href="#" class="text-white hover:text-cvcOrange transition duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcDark rounded-full p-1" aria-label="Facebook">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
                     </svg>
                 </a>
-                <a href="#" class="text-white hover:text-cvcOrange transition duration-300">
+                <a href="#" class="text-white hover:text-cvcOrange transition duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcDark rounded-full p-1" aria-label="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 7c-2.209 0-4 1.791-4 4s1.791 4 4 4 4-1.791 4-4-1.791-4-4-4zm0 6c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z"/>
                     </svg>
                 </a>
-                <a href="#" class="text-white hover:text-cvcOrange transition duration-300">
+                <a href="#" class="text-white hover:text-cvcOrange transition duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcDark rounded-full p-1" aria-label="Twitter">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                     </svg>
                 </a>
             </div>
         </div>
         <div class="border-t border-gray-700 mt-8 pt-8 text-center">
             <p>&copy; 2025 Cincinnati Volleyball Club. All rights reserved.</p>
+            <div class="mt-4 text-sm text-gray-400">
+                <a href="#" class="hover:text-white hover:underline">Privacy Policy</a> |
+                <a href="#" class="hover:text-white hover:underline">Terms of Service</a>
+            </div>
         </div>
     </div>
 </footer>
 
-
 <script>
-    // Improved mobile menu toggle with better accessibility
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-    menuToggle.addEventListener("click", () => {
-        const isExpanded = mobileMenu.classList.toggle("active");
-        menuToggle.setAttribute("aria-expanded", isExpanded);
-        menuToggle.textContent = isExpanded ? "✕" : "☰";
-    });
+        menuToggle.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('active');
 
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-        if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            mobileMenu.classList.remove("active");
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.textContent = "☰";
-        }
-    });
+            // Toggle hamburger icon
+            if (!isExpanded) {
+                this.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                `;
+            } else {
+                this.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                `;
+            }
+        });
 
-    // Back to top button
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTop.classList.remove('opacity-0', 'invisible');
-            backToTop.classList.add('opacity-100', 'visible');
-        } else {
-            backToTop.classList.add('opacity-0', 'invisible');
-            backToTop.classList.remove('opacity-100', 'visible');
-        }
-    });
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                `;
+            });
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Update URL without jumping
+                    if (history.pushState) {
+                        history.pushState(null, null, targetId);
+                    } else {
+                        window.location.hash = targetId;
+                    }
+                }
+            });
+        });
     });
 </script>
 

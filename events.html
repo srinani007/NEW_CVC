@@ -7,8 +7,8 @@
     <meta name="description" content="Upcoming events for Cincinnati Volleyball Club including tournaments, leagues, and social gatherings">
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="logo.png" as="image">
-    <link rel="preload" href="QRCODE%20CVC.png" as="image">
+    <link rel="preload" href="logo.png" as="image" imagesrcset="logo.png" imagesizes="100vw">
+    <link rel="preload" href="QRCODE%20CVC.png" as="image" imagesrcset="QRCODE%20CVC.png" imagesizes="128px">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -138,12 +138,32 @@
             transition-duration: 0.01ms !important;
             scroll-behavior: auto !important;
           }
+
+          .btn-hover:hover, .qr-code:hover {
+            transform: none !important;
+          }
         }
 
         /* View transitions */
         @supports (view-transition-name: none) {
           .event-poster {
             view-transition-name: event-poster;
+          }
+        }
+
+        /* Mobile menu improvements */
+        @media (max-width: 767px) {
+          .mobile-menu {
+            width: 100%;
+          }
+
+          .mobile-menu a {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+          }
+
+          .mobile-menu a:last-child {
+            border-bottom: none;
           }
         }
     </style>
@@ -160,7 +180,7 @@
                 <a href="index.html" class="flex items-center focus:outline-none">
                     <picture>
                         <source srcset="logo.png" type="image/png">
-                        <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 hover:opacity-90 transition" loading="eager">
+                        <img src="logo.png" alt="Cincinnati Volleyball Club" width="40" height="40" class="h-10 hover:opacity-90 transition" loading="eager">
                     </picture>
                     <span class="text-xl font-bold text-cvcOrange">Cincinnati Volleyball Club</span>
                 </a>
@@ -172,16 +192,18 @@
                 <a href="contact.html" class="text-white hover:text-cvcOrange nav-link">Contact</a>
             </nav>
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-cvcOrange animate__animated animate__fadeIn focus:outline-none" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+                <button id="menu-toggle" class="text-cvcOrange animate__animated animate__fadeIn focus:outline-none" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <span id="menu-icon">☰</span>
+                </button>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu">
+        <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
             <div class="flex flex-col space-y-3">
-                <a href="index.html" class="text-white hover:text-cvcOrange py-2 px-1">Home</a>
-                <a href="events.html" class="text-white hover:text-cvcOrange py-2 px-1 font-bold">Events</a>
-                <a href="layout.html" class="text-white hover:text-cvcOrange py-2 px-1">Sponsors</a>
-                <a href="contact.html" class="text-white hover:text-cvcOrange py-2 px-1">Contact</a>
+                <a href="index.html" class="text-white hover:text-cvcOrange py-2 px-1 focus:text-cvcOrange focus:bg-white focus:bg-opacity-20">Home</a>
+                <a href="events.html" class="text-white hover:text-cvcOrange py-2 px-1 font-bold focus:text-cvcOrange focus:bg-white focus:bg-opacity-20">Events</a>
+                <a href="layout.html" class="text-white hover:text-cvcOrange py-2 px-1 focus:text-cvcOrange focus:bg-white focus:bg-opacity-20">Sponsors</a>
+                <a href="contact.html" class="text-white hover:text-cvcOrange py-2 px-1 focus:text-cvcOrange focus:bg-white focus:bg-opacity-20">Contact</a>
             </div>
         </div>
     </header>
@@ -208,7 +230,7 @@
 
                         <p class="text-xl font-bold mt-6">Registration Fee: $350.00</p>
                         <a href="https://register.cincyvolleyballclub.com"
-                           class="inline-block btn-hover bg-white text-cvcOrange px-6 py-2 rounded-lg font-bold text-md mt-4 focus:outline-none">
+                           class="inline-block btn-hover bg-white text-cvcOrange px-6 py-2 rounded-lg font-bold text-md mt-4 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcOrange">
                             REGISTER NOW
                         </a>
                     </div>
@@ -223,7 +245,7 @@
 
                 <div class="flex flex-col items-center justify-between">
                     <div class="qr-code bg-white p-2 rounded-lg mb-4">
-                        <img src="QRCODE%20CVC.png" alt="Scan to Register" class="w-32 h-32" loading="lazy">
+                        <img src="QRCODE%20CVC.png" alt="Scan to Register" width="128" height="128" class="w-32 h-32" loading="lazy">
                         <p class="text-cvcDark font-bold mt-2 text-center">Scan to Register</p>
                     </div>
 
@@ -265,7 +287,7 @@
                             <span>Glenview Golf Course, Cincinnati, OH</span>
                         </div>
                         <p class="mb-4 text-sm">Join us for our annual golf tournament with lunch, dinner, and drinks provided.</p>
-                        <a href="#" class="btn-hover inline-block bg-cvcOrange text-white px-4 py-2 rounded-lg font-bold text-sm focus:outline-none">Learn More</a>
+                        <a href="#" class="btn-hover inline-block bg-cvcOrange text-white px-4 py-2 rounded-lg font-bold text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcOrange">Learn More</a>
                     </div>
 
                     <!-- Summer League -->
@@ -285,7 +307,7 @@
                             <span>Sports Express, Mason, OH</span>
                         </div>
                         <p class="mb-4 text-sm">Weekly matches every Wednesday evening. Open to all skill levels.</p>
-                        <a href="#" class="btn-hover inline-block bg-cvcOrange text-white px-4 py-2 rounded-lg font-bold text-sm focus:outline-none">Learn More</a>
+                        <a href="#" class="btn-hover inline-block bg-cvcOrange text-white px-4 py-2 rounded-lg font-bold text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcOrange">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -298,7 +320,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
                     <a href="index.html" class="flex items-center justify-center md:justify-start focus:outline-none">
-                        <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 mr-2" loading="lazy"/>
+                        <img src="logo.png" alt="Cincinnati Volleyball Club" width="40" height="40" class="h-10 mr-2" loading="lazy"/>
                         <span class="text-xl font-bold text-cvcOrange">Cincinnati Volleyball Club</span>
                     </a>
                     <p class="mt-2 text-sm">Building community through sports since 2008</p>
@@ -306,17 +328,17 @@
 
                 <div class="flex flex-col items-center md:items-end">
                     <div class="flex space-x-4 mb-4">
-                        <a href="#" class="text-white hover:text-cvcOrange transition-colors focus:outline-none" aria-label="Facebook">
+                        <a href="#" class="text-white hover:text-cvcOrange transition-colors focus:outline-none focus:text-cvcOrange" aria-label="Facebook">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
                             </svg>
                         </a>
-                        <a href="#" class="text-white hover:text-cvcOrange transition-colors focus:outline-none" aria-label="Instagram">
+                        <a href="#" class="text-white hover:text-cvcOrange transition-colors focus:outline-none focus:text-cvcOrange" aria-label="Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                             </svg>
                         </a>
-                        <a href="#" class="text-white hover:text-cvcOrange transition-colors focus:outline-none" aria-label="Twitter">
+                        <a href="#" class="text-white hover:text-cvcOrange transition-colors focus:outline-none focus:text-cvcOrange" aria-label="Twitter">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
                             </svg>
@@ -329,13 +351,15 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 bg-cvcOrange text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 focus:outline-none" aria-label="Back to top">
-        ↑
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-cvcOrange text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcOrange" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
     </button>
 
     <!-- Mobile Sticky CTA -->
     <div class="fixed bottom-0 left-0 right-0 bg-cvcOrange text-white py-3 px-4 shadow-lg md:hidden z-50">
-        <a href="https://register.cincyvolleyballclub.com" class="flex justify-between items-center focus:outline-none">
+        <a href="https://register.cincyvolleyballclub.com" class="flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcOrange">
             <span class="font-bold">Register Now</span>
             <span class="bg-white text-cvcOrange px-3 py-1 rounded-lg font-bold">$350</span>
         </a>
@@ -346,21 +370,47 @@
     // Improved mobile menu toggle with better accessibility
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
 
-    menuToggle.addEventListener("click", () => {
+    // Function to toggle menu
+    function toggleMenu() {
         const isExpanded = mobileMenu.classList.toggle("active");
         menuToggle.setAttribute("aria-expanded", isExpanded);
-        menuToggle.textContent = isExpanded ? "✕" : "☰";
-    });
+        mobileMenu.setAttribute("aria-hidden", !isExpanded);
+        menuIcon.textContent = isExpanded ? "✕" : "☰";
 
-    // Close menu when clicking outside
+        // Trap focus when menu is open
+        if (isExpanded) {
+            const focusableElements = mobileMenu.querySelectorAll('a[href]');
+            if (focusableElements.length > 0) {
+                focusableElements[0].focus();
+            }
+        }
+    }
+
+    // Toggle menu on click
+    menuToggle.addEventListener("click", toggleMenu);
+
+    // Close menu when clicking outside or pressing Escape
     document.addEventListener("click", (e) => {
         if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            mobileMenu.classList.remove("active");
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.textContent = "☰";
+            closeMenu();
         }
     });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileMenu.classList.contains("active")) {
+            closeMenu();
+            menuToggle.focus();
+        }
+    });
+
+    function closeMenu() {
+        mobileMenu.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        menuIcon.textContent = "☰";
+    }
 
     // Back to top button
     const backToTop = document.getElementById('back-to-top');
@@ -373,8 +423,26 @@
             backToTop.classList.remove('opacity-100', 'visible');
         }
     });
+
     backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Improved keyboard navigation for mobile menu
+    mobileMenu.addEventListener('keydown', (e) => {
+        const focusableElements = mobileMenu.querySelectorAll('a[href]');
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.key === 'Tab') {
+            if (e.shiftKey && document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
     });
 </script>
 </body>

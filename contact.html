@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="About Cincinnati Volleyball Club and contact information for sponsors and participants">
+    <meta name="keywords" content="volleyball, Cincinnati, sports, tournament, golf, sponsorship">
     <title>About & Contact | Cincinnati Volleyball Club</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com" ></script>
     <script>
         tailwind.config = {
@@ -25,6 +28,9 @@
         .mobile-menu.active {
             display: block;
         }
+        .back-to-top {
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body class="bg-cvcLight text-gray-800 font-sans">
@@ -33,126 +39,154 @@
 <header class="bg-cvcDark text-white sticky top-0 z-50 shadow-md">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <div class="flex items-center space-x-2">
-            <a href="index.html" class="flex items-center">
-                <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 hover:opacity-90 transition" />
+            <a href="index.html" class="flex items-center focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded">
+                <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 hover:opacity-90 transition" loading="lazy" />
                 <span class="text-xl font-bold text-cvcOrange">Cincinnati Volleyball Club</span>
             </a>
         </div>
-        <nav class="space-x-4 hidden md:flex">
-            <a href="index.html" class="hover:text-cvcOrange">Home</a>
-            <a href="events.html" class="hover:text-cvcOrange">Events</a>
-            <a href="#" class="text-cvcOrange font-semibold">About & Contact</a>
+        <nav class="hidden md:flex space-x-6" aria-label="Main navigation">
+            <a href="index.html" class="hover:text-cvcOrange transition duration-200 focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2 py-1">Home</a>
+            <a href="events.html" class="hover:text-cvcOrange transition duration-200 focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2 py-1">Events</a>
+            <a href="#" class="text-cvcOrange font-semibold focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2 py-1" aria-current="page">About & Contact</a>
         </nav>
         <div class="md:hidden">
-            <button id="menu-toggle" class="text-cvcOrange text-xl">☰</button>
+            <button id="menu-toggle" class="text-cvcOrange text-xl focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2 py-1" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
         </div>
     </div>
     <div id="mobile-menu" class="mobile-menu hidden bg-cvcDark text-white px-4 py-2">
-        <a href="index.html" class="block py-2">Home</a>
-        <a href="events.html" class="block py-2">Events</a>
-        <a href="#" class="block py-2 text-cvcOrange">About & Contact</a>
+        <nav aria-label="Mobile navigation">
+            <a href="index.html" class="block py-2 hover:text-cvcOrange transition duration-200 focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2">Home</a>
+            <a href="events.html" class="block py-2 hover:text-cvcOrange transition duration-200 focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2">Events</a>
+            <a href="#" class="block py-2 text-cvcOrange font-semibold focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2" aria-current="page">About & Contact</a>
+        </nav>
     </div>
 </header>
 
-<!-- About Section -->
-<section class="container mx-auto px-4 py-12 max-w-5xl">
-    <h2 class="text-4xl font-bold text-center text-cvcOrange mb-6">About Cincinnati Volleyball Club</h2>
-    <p class="text-lg text-gray-700 leading-relaxed mb-6">
-        Cincinnati Volleyball Club (CVC) is a passionate community of volleyball enthusiasts located in the heart of Ohio. Established to promote competitive and recreational volleyball, CVC offers a platform for players of all skill levels to connect, grow, and compete.
-    </p>
-    <p class="text-lg text-gray-700 leading-relaxed mb-6">
-        We proudly host the <strong>17th Annual Volleyball Tournament</strong> and <strong>5th Annual Golf Tournament</strong> in 2025, bringing together over 50 teams and approximately 600 participants from major Mid-Western cities including Columbus, Cleveland, Chicago, Indianapolis, Detroit, Nashville, Louisville, Lexington, Memphis, and Atlanta.
-    </p>
-    <p class="text-lg text-gray-700 leading-relaxed mb-6">
-        Our events provide excellent sponsorship opportunities for businesses looking to engage with the community and market to a targeted audience of hotel owners and sports enthusiasts.
-    </p>
-</section>
+<!-- Main Content -->
+<main>
+    <!-- About Section -->
+    <section class="container mx-auto px-4 py-12 max-w-5xl">
+        <h1 class="text-4xl font-bold text-center text-cvcOrange mb-6">About Cincinnati Volleyball Club</h1>
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+            Cincinnati Volleyball Club (CVC) is a passionate community of volleyball enthusiasts located in the heart of Ohio. Established to promote competitive and recreational volleyball, CVC offers a platform for players of all skill levels to connect, grow, and compete.
+        </p>
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+            We proudly host the <strong>17th Annual Volleyball Tournament</strong> and <strong>5th Annual Golf Tournament</strong> in 2025, bringing together over 50 teams and approximately 600 participants from major Mid-Western cities including Columbus, Cleveland, Chicago, Indianapolis, Detroit, Nashville, Louisville, Lexington, Memphis, and Atlanta.
+        </p>
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+            Our events provide excellent sponsorship opportunities for businesses looking to engage with the community and market to a targeted audience of hotel owners and sports enthusiasts.
+        </p>
+    </section>
 
-<!-- Contact Section -->
-<section id="contact" class="bg-white rounded-xl shadow-lg p-8 mb-16 container mx-auto max-w-6xl">
-    <h2 class="text-3xl font-bold mb-8 text-center text-cvcDark">Contact Us</h2>
+    <!-- Contact Section -->
+    <section id="contact" class="bg-white rounded-xl shadow-lg p-8 mb-16 container mx-auto max-w-6xl">
+        <h2 class="text-3xl font-bold mb-8 text-center text-cvcDark">Contact Us</h2>
 
-    <div class="max-w-4xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-8">
-            <div>
-                <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Sponsorship Inquiries</h3>
-                <p class="mb-4">Thank you for supporting our club's events. For more information, please contact the Cincinnati Volleyball Committee:</p>
-                <p class="mb-2"><strong>Email:</strong> <a href="mailto:cincyvolleyballclub@gmail.com" class="text-cvcOrange hover:underline">cincyvolleyballclub@gmail.com</a></p>
-                <p class="mb-4"><strong>Payment:</strong> Please make check payable to: Cincinnati Volleyball Club</p>
-                <p><strong>Mailing Address:</strong><br>Rakesh Patel<br>8151 Vegas Ct.<br>West Chester, OH 45069</p>
+        <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Sponsorship Inquiries</h3>
+                    <p class="mb-4">Thank you for supporting our club's events. For more information, please contact the Cincinnati Volleyball Committee:</p>
+                    <p class="mb-2"><strong>Email:</strong> <a href="mailto:cincyvolleyballclub@gmail.com" class="text-cvcOrange hover:underline focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-1">cincyvolleyballclub@gmail.com</a></p>
+                    <p class="mb-4"><strong>Payment:</strong> Please make check payable to: Cincinnati Volleyball Club</p>
+                    <p><strong>Mailing Address:</strong><br>Rakesh Patel<br>8151 Vegas Ct.<br>West Chester, OH 45069</p>
 
-                <div class="mt-8">
-                    <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Special 2025 Incentive</h3>
-                    <p class="mb-2">Sponsors contributing $3,000+ will automatically receive a spot as a sponsor at the Annual Golf Tournament at no additional cost!</p>
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Special 2025 Incentive</h3>
+                        <p class="mb-2">Sponsors contributing $3,000+ will automatically receive a spot as a sponsor at the Annual Golf Tournament at no additional cost!</p>
+                    </div>
                 </div>
-            </div>
 
-            <div>
-                <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Committee Members</h3>
-                <ul class="space-y-2">
-                    <li><strong>Rocky:</strong> 513-348-0990</li>
-                    <li><strong>Dixit:</strong> 859-814-9914</li>
-                    <li><strong>Bhavesh:</strong> 513-349-3913</li>
-                    <li><strong>Snehal:</strong> 513-633-6071</li>
-                    <li><strong>Snehal (Tino):</strong> 361-231-5000</li>
-                    <li><strong>Bhavin:</strong> 937-537-3300</li>
-                    <li><strong>Robin:</strong> 513-226-7344</li>
-                </ul>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Committee Members</h3>
+                    <ul class="space-y-2">
+                        <li><strong>Rocky:</strong> <a href="tel:513-348-0990" class="hover:underline">513-348-0990</a></li>
+                        <li><strong>Dixit:</strong> <a href="tel:859-814-9914" class="hover:underline">859-814-9914</a></li>
+                        <li><strong>Bhavesh:</strong> <a href="tel:513-349-3913" class="hover:underline">513-349-3913</a></li>
+                        <li><strong>Snehal:</strong> <a href="tel:513-633-6071" class="hover:underline">513-633-6071</a></li>
+                        <li><strong>Snehal (Tino):</strong> <a href="tel:361-231-5000" class="hover:underline">361-231-5000</a></li>
+                        <li><strong>Bhavin:</strong> <a href="tel:937-537-3300" class="hover:underline">937-537-3300</a></li>
+                        <li><strong>Robin:</strong> <a href="tel:513-226-7344" class="hover:underline">513-226-7344</a></li>
+                    </ul>
 
-                <div class="mt-8">
-                    <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Upcoming Events</h3>
-                    <p class="mb-2"><strong>17th CVC Volleyball Tournament:</strong><br>
-                        May 16-17, 2025<br>
-                        Sports Express, Mason, OH</p>
-                    <p class="mb-2"><strong>5th CVC Golf Tournament:</strong><br>
-                        June 28-29, 2025<br>
-                        Glennview Golf Course, Cincinnati, OH</p>
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold mb-4 text-cvcOrange">Upcoming Events</h3>
+                        <p class="mb-4"><strong>17th CVC Volleyball Tournament:</strong><br>
+                            May 16-17, 2025<br>
+                            Sports Express, Mason, OH</p>
+                        <p class="mb-2"><strong>5th CVC Golf Tournament:</strong><br>
+                            June 28-29, 2025<br>
+                            Glennview Golf Course, Cincinnati, OH</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</main>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" class="fixed bottom-8 right-8 bg-cvcOrange text-white p-3 rounded-full shadow-lg opacity-0 invisible back-to-top focus:outline-none focus:ring-2 focus:ring-white" aria-label="Back to top">
+    ↑
+</button>
 
 <!-- Footer -->
 <footer class="bg-cvcDark text-white text-center py-6 mt-10 text-sm">
-    &copy; 2025 Cincinnati Volleyball Club. All rights reserved.
+    <div class="container mx-auto px-4">
+        &copy; 2025 Cincinnati Volleyball Club. All rights reserved.
+    </div>
 </footer>
 
 <!-- Scripts -->
-
 <script>
-    // Improved mobile menu toggle with better accessibility
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
 
-    menuToggle.addEventListener("click", () => {
-        const isExpanded = mobileMenu.classList.toggle("active");
-        menuToggle.setAttribute("aria-expanded", isExpanded);
-        menuToggle.textContent = isExpanded ? "✕" : "☰";
-    });
+        menuToggle.addEventListener("click", function(e) {
+            e.preventDefault();
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('active');
+            this.textContent = isExpanded ? '☰' : '✕';
+        });
 
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-        if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            mobileMenu.classList.remove("active");
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.textContent = "☰";
-        }
-    });
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = '☰';
+            }
+        });
 
-    // Back to top button
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTop.classList.remove('opacity-0', 'invisible');
-            backToTop.classList.add('opacity-100', 'visible');
-        } else {
-            backToTop.classList.add('opacity-0', 'invisible');
-            backToTop.classList.remove('opacity-100', 'visible');
-        }
-    });
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Close menu when pressing Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = '☰';
+            }
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     });
 </script>
 
