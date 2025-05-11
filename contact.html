@@ -12,7 +12,7 @@
         tailwind.config = {
           theme: {
             extend: {
-             colors: {
+              colors: {
                 cvcOrange: '#f26522',
                 cvcDark: '#111111',
                 cvcLight: '#f8f8f8',
@@ -22,6 +22,22 @@
         }
     </script>
     <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f26522 0%, #f8a145 100%);
+        }
+        .content-overlay {
+          position: relative;
+          z-index: 1;
+        }
+        header {
+          z-index: 50;
+        }
+        body {
+          background: linear-gradient(135deg, #f26522 0%, #f8a145 100%);
+        }
+        .main-content {
+          background: rgba(255, 255, 255, 0.95);
+        }
         .mobile-menu {
             display: none;
         }
@@ -31,48 +47,62 @@
         .back-to-top {
             transition: all 0.3s ease;
         }
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-link:hover {
+            color: #f26522;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #f26522;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
     </style>
 </head>
 <body class="bg-cvcLight text-gray-800 font-sans">
 
 <!-- Header (Navbar) -->
-<header class="bg-cvcDark sticky top-0 z-50 shadow-lg">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-            <a href="index.html" class="flex items-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcDark rounded">
-                <div class="bg-cvcOrange p-2 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                    </svg>
-                </div>
-                <span class="text-xl font-bold text-white ml-2">Cincinnati Volleyball Club</span>
+<header class="bg-cvcDark text-white sticky top-0 z-50 shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <a href="index.html" class="flex items-center focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded">
+                <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 hover:opacity-90 transition" loading="lazy" />
+                <span class="text-xl font-bold text-cvcOrange ml-2">Cincinnati Volleyball Club</span>
             </a>
         </div>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex space-x-8">
-            <a href="index.html" class="text-white nav-link font-medium">Home</a>
-            <a href="events.html" class="text-white nav-link font-medium">Events</a>
-            <a href="sponsorship.html" class="text-white nav-link font-medium">Sponsorships</a>
-            <a href="contact.html" class="text-white nav-link font-medium">Contact</a>
+        <nav class="hidden md:flex space-x-6" aria-label="Main navigation">
+            <a href="index.html" class="nav-link transition duration-200 focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2 py-1">Home</a>
+            <a href="events.html" class="nav-link transition duration-200 focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2 py-1">Events</a>
+            <a href="sponsorship.html" class="nav-link transition duration-200 focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2 py-1">Sponsorships</a>
+            <a href="contact.html" class="text-cvcOrange font-semibold focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2 py-1" aria-current="page">About & Contact</a>
         </nav>
 
         <!-- Mobile Menu Button -->
-        <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
+        <div class="md:hidden">
+            <button id="menu-toggle" class="text-cvcOrange">☰</button>
+        </div>
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu md:hidden bg-cvcDark">
-        <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
-            <a href="index.html" class="text-white font-medium py-2">Home</a>
-            <a href="#events" class="text-white font-medium py-2">Events</a>
-            <a href="#sponsors" class="text-white font-medium py-2">Sponsorships</a>
-            <a href="#contact" class="text-white font-medium py-2">Contact</a>
-        </div>
+    <div id="mobile-menu" class="mobile-menu hidden bg-cvcDark text-white px-4 py-2">
+        <nav aria-label="Mobile navigation">
+            <a href="index.html" class="block py-2 hover:text-cvcOrange transition duration-200 focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2">Home</a>
+            <a href="events.html" class="block py-2 hover:text-cvcOrange transition duration-200 focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2">Events</a>
+            <a href="sponsorship.html" class="block py-2 hover:text-cvcOrange transition duration-200 focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2">Sponsorships</a>
+            <a href="#" class="block py-2 text-cvcOrange font-semibold focus:outline-none focus:ring-2 focus:ring-cvcOrange rounded px-2" aria-current="page">About & Contact</a>
+        </nav>
     </div>
 </header>
 
@@ -142,6 +172,8 @@
 <button id="back-to-top" class="fixed bottom-8 right-8 bg-cvcOrange text-white p-3 rounded-full shadow-lg opacity-0 invisible back-to-top focus:outline-none focus:ring-2 focus:ring-white" aria-label="Back to top">
     ↑
 </button>
+
+
 
 <!-- Footer -->
 <footer class="bg-cvcDark text-white text-center py-6 mt-10 text-sm">
