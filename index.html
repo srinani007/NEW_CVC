@@ -41,7 +41,7 @@
 
         .animate-scroll-sponsors {
           display: flex;
-          animation: scroll-sponsors 20s linear infinite;
+          animation: scroll-sponsors 15s linear infinite;
           width: calc(200px * 8);
         }
 
@@ -144,27 +144,7 @@
           }
 
           .animate-scroll-sponsors {
-            width: calc(150px * 16);
-          }
-          animate-scroll-sponsors {
-            animation: none; /* Disable animation on mobile */
-            overflow-x: auto; /* Enable horizontal scrolling */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-            width: auto; /* Let content determine width */
-            padding-bottom: 10px; /* Space for scrollbar */
-          }
-          .sponsors-container {
-            position: relative;
-          }
-          .sponsors-container:after {
-            content: '→';
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #f26522;
-            font-size: 24px;
-            opacity: 0.7;
+            width: calc(150px * 8);
           }
         }
         @media (max-width: 480px) {
@@ -289,7 +269,7 @@
           margin-right: 5px;
         }
         .relative.max-w-6xl.mx-auto.overflow-hidden {
-          overflow-x: visible; /* Or 'auto' for mobile */
+          overflow-x: visible;
         }
 
     </style>
@@ -315,7 +295,7 @@
                 <a href="contact.html" class="text-white hover:text-cvcOrange nav-link">Contact</a>
             </nav>
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-cvcOrange animate__animated animate__fadeIn">☰</button>
+                <button id="menu-toggle" class="text-cvcOrange">☰</button>
             </div>
         </div>
         <!-- Mobile Menu -->
@@ -329,8 +309,8 @@
 
     <!-- Hero Section -->
     <section class="flex-1 flex flex-col justify-center items-center text-center px-4 py-12 md:py-20">
-        <div class="max-w-4xl mx-auto glass-card p-8 md:p-12 animate__animated animate__fadeIn">
-            <div class="floating">
+        <div class="max-w-4xl mx-auto glass-card p-8 md:p-12">
+            <div>
                 <img src="logo1.png" alt="Cincinnati Volleyball Club" class="h-40 mx-auto mb-6 transition-all duration-300 hover:scale-105" />
             </div>
             <h1 class="text-3xl md:text-4xl font-bold text-cvcDark mb-4">Welcome to Cincinnati Volleyball Club</h1>
@@ -398,10 +378,10 @@
         <div class="container mx-auto px-4 text-center">
             <h3 class="text-3xl font-bold text-cvcOrange mb-12 relative inline-block">
                 Our Sponsors
-                <span class="absolute bottom-0 left-0 w-full h-1 bg-cvcOrange transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100"></span>
+                <span class="absolute bottom-0 left-0 w-full h-1 bg-cvcOrange transform scale-x-0 origin-left transition-transform duration-350 group-hover:scale-x-100"></span>
             </h3>
             <div class="relative max-w-6xl mx-auto overflow-hidden">
-                <div class="py-6">
+                <div class="py-5">
                     <div class="animate-scroll-sponsors">
                         <!-- Duplicate sponsors for seamless looping -->
                         <div class="sponsor">
