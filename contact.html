@@ -27,7 +27,10 @@
         }
         .content-overlay {
           position: relative;
-          z-index: 1;
+          background: linear-gradient(135deg, rgba(246, 104, 2, 0.98) 0%, rgba(255,255,255,0.98) 100%);
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
         }
         header {
           z-index: 50;
@@ -107,7 +110,7 @@
 </header>
 
 <!-- Main Content -->
-<main>
+<main class="content-overlay flex-grow">
     <!-- About Section -->
     <section class="container mx-auto px-4 py-12 max-w-5xl">
         <h1 class="text-4xl font-bold text-center  mb-6">About Cincinnati Volleyball Club</h1>
