@@ -144,7 +144,32 @@
           }
 
           .animate-scroll-sponsors {
-            width: calc(150px * 8);
+            width: calc(150px * 16);
+          }
+          animate-scroll-sponsors {
+            animation: none; /* Disable animation on mobile */
+            overflow-x: auto; /* Enable horizontal scrolling */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            width: auto; /* Let content determine width */
+            padding-bottom: 10px; /* Space for scrollbar */
+          }
+          .sponsors-container {
+            position: relative;
+          }
+          .sponsors-container:after {
+            content: '→';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f26522;
+            font-size: 24px;
+            opacity: 0.7;
+          }
+        }
+        @media (max-width: 480px) {
+          .sponsor {
+            min-width: 120px;
           }
         }
 
@@ -263,6 +288,10 @@
         .match-location svg {
           margin-right: 5px;
         }
+        .relative.max-w-6xl.mx-auto.overflow-hidden {
+          overflow-x: visible; /* Or 'auto' for mobile */
+        }
+
     </style>
 </head>
 <body class="font-sans text-gray-800 bg-cvcLight bg-pattern">
@@ -282,7 +311,7 @@
             <nav class="desktop-menu space-x-6 hidden md:flex">
                 <a href="index.html" class="text-white hover:text-cvcOrange nav-link">Home</a>
                 <a href="events.html" class="text-white hover:text-cvcOrange nav-link">Events</a>
-                <a href="layout.html" class="text-white hover:text-cvcOrange nav-link">Sponsors</a>
+                <a href="sponsorship.html" class="text-white hover:text-cvcOrange nav-link">Sponsors</a>
                 <a href="contact.html" class="text-white hover:text-cvcOrange nav-link">Contact</a>
             </nav>
             <div class="md:hidden">
@@ -293,7 +322,7 @@
         <div id="mobile-menu" class="mobile-menu">
             <a href="index.html">Home</a>
             <a href="events.html">Events</a>
-            <a href="layout.html">Sponsors</a>
+            <a href="sponsorship.html">Sponsors</a>
             <a href="contact.html">Contact</a>
         </div>
     </header>
