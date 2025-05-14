@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Cincinnati Volleyball Club | Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
           theme: {
             extend: {
               colors: {
-                cvcOrange: '#f26522',
-                cvcDark: '#111111',
-                cvcLight: '#f8f8f8',
-              },
+                 cvcOrange: '#f26522',
+                 cvcDark: '#111111',
+                 cvcLight: '#f8f8f8',
+               },
               animation: {
                 'fade-in': 'fadeIn 0.5s ease-in',
                 'float': 'float 1s ease-in-out infinite',
@@ -34,6 +35,9 @@
         }
     </script>
     <style>
+        HTML {
+          scroll-behavior: smooth;
+        }
         @keyframes scroll-sponsors {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -285,6 +289,8 @@
 <div class="content-overlay">
 
     <!-- Navbar -->
+
+    <!-- Navbar -->
     <header class="bg-cvcDark text-white sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
@@ -311,6 +317,8 @@
             <a href="contact.html">Contact</a>
         </div>
     </header>
+
+
 
     <!-- Hero Section -->
     <section class="flex-1 flex flex-col justify-center items-center text-center px-4 py-12 md:py-20">
@@ -457,41 +465,6 @@
     </footer>
 </div>
 
-
-<script>
-    // Improved mobile menu toggle with better accessibility
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
-
-    menuToggle.addEventListener("click", () => {
-        const isExpanded = mobileMenu.classList.toggle("active");
-        menuToggle.setAttribute("aria-expanded", isExpanded);
-        menuToggle.textContent = isExpanded ? "✕" : "☰";
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-        if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            mobileMenu.classList.remove("active");
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.textContent = "☰";
-        }
-    });
-
-    // Back to top button
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTop.classList.remove('opacity-0', 'invisible');
-            backToTop.classList.add('opacity-100', 'visible');
-        } else {
-            backToTop.classList.add('opacity-0', 'invisible');
-            backToTop.classList.remove('opacity-100', 'visible');
-        }
-    });
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-</script>
+<script src="script.js"></script>
 </body>
 </html>

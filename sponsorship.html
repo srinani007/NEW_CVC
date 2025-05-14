@@ -61,13 +61,46 @@
         }
         /* Mobile menu animation */
         .mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
+          display: none;
+          background-color: rgba(17, 17, 17, 0.98);
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          padding: 1rem;
+          z-index: 100;
+          backdrop-filter: blur(5px);
         }
         .mobile-menu.active {
-            max-height: 500px;
-            transition: max-height 0.5s ease-in;
+          display: block;
+          animation: fadeIn 0.3s ease-out;
+        }
+        .mobile-menu a {
+          display: block;
+          padding: 0.75rem;
+          color: white;
+          text-decoration: none;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.2s ease;
+        }
+
+        .mobile-menu a:hover {
+          background-color: rgba(242, 101, 34, 0.2);
+          padding-left: 1rem;
+        }
+
+        #menu-toggle {
+          background: none;
+          border: none;
+          color: #f26522;
+          font-size: 1.5rem;
+          cursor: pointer;
+          padding: 0.5rem;
+          transition: transform 0.3s ease;
+        }
+
+        #menu-toggle:hover {
+          transform: rotate(90deg);
         }
         /* Back to top button */
         .back-to-top {
@@ -86,54 +119,54 @@
                 box-shadow: none;
             }
         }
+        /* Button hover effect */
+        .btn-hover {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transform: translateY(0);
+        }
+
+        .btn-hover:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 15px -3px rgba(242, 101, 34, 0.3);
+        }
     </style>
 </head>
 <body class="font-sans bg-cvcLight text-gray-800">
 
 
-<!-- Skip to content link for accessibility -->
+<!-- Skip to a content link for accessibility -->
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:z-50">Skip to main content</a>
 
-<!-- Header (Navbar) -->
-<header class="bg-cvcDark sticky top-0 z-50 shadow-lg">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-            <a href="index.html" class="flex items-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cvcDark rounded">
-                <div class="bg-cvcOrange p-2 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                    </svg>
-                </div>
-                <span class="text-xl font-bold text-white ml-2">Cincinnati Volleyball Club</span>
+
+<!-- Navbar -->
+<header class="bg-cvcDark text-white sticky top-0 z-50 shadow-lg">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <a href="index.html" class="flex items-center">
+                <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 hover:opacity-90 transition" />
+                <span class="text-xl font-bold text-cvcOrange">Cincinnati Volleyball Club</span>
             </a>
         </div>
-
-        <!-- Desktop Navigation -->
-        <nav class="hidden md:flex space-x-8">
-            <a href="index.html" class="text-white nav-link font-medium">Home</a>
-            <a href="events.html" class="text-white nav-link font-medium">Events</a>
-            <a href="sponsorship.html" class="text-white nav-link font-medium">Sponsorships</a>
-            <a href="contact.html" class="text-white nav-link font-medium">Contact</a>
+        <nav class="desktop-menu space-x-6 hidden md:flex">
+            <a href="index.html" class="text-white hover:text-cvcOrange nav-link">Home</a>
+            <a href="events.html" class="text-white hover:text-cvcOrange nav-link">Events</a>
+            <a href="sponsorship.html" class="text-white hover:text-cvcOrange nav-link">Sponsors</a>
+            <a href="contact.html" class="text-white hover:text-cvcOrange nav-link">Contact</a>
         </nav>
-
-        <!-- Mobile Menu Button -->
-        <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu md:hidden bg-cvcDark">
-        <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
-            <a href="index.html" class="text-white font-medium py-2">Home</a>
-            <a href="events.html" class="text-white font-medium py-2">Events</a>
-            <a href="sponsorship.html" class="text-white font-medium py-2">Sponsorships</a>
-            <a href="contact.html" class="text-white font-medium py-2">Contact</a>
+        <div class="md:hidden">
+            <button id="menu-toggle" class="text-cvcOrange">☰</button>
         </div>
     </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="sponsorship.html">Sponsors</a>
+        <a href="contact.html">Contact</a>
+    </div>
 </header>
+
+
 <div class="content-overlay gradient-bg  ">
 
 <!-- Hero Section -->
@@ -507,91 +540,7 @@
     </div>
 </footer>
 
-<script>
-    // Mobile menu toggle
-    document.addEventListener('DOMContentLoaded', function() {
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuToggle.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            this.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('active');
-
-            // Toggle hamburger icon
-            if (!isExpanded) {
-                this.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                `;
-            } else {
-                this.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                `;
-            }
-        });
-
-        // Close mobile menu when clicking on a link
-        const mobileLinks = document.querySelectorAll('#mobile-menu a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                menuToggle.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                `;
-            });
-        });
-
-        // Back to top button
-        const backToTop = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.remove('opacity-0', 'invisible');
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.add('opacity-0', 'invisible');
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-
-                    // Update URL without jumping
-                    if (history.pushState) {
-                        history.pushState(null, null, targetId);
-                    } else {
-                        window.location.hash = targetId;
-                    }
-                }
-            });
-        });
-    });
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

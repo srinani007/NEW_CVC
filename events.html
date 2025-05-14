@@ -12,6 +12,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
           theme: {
@@ -23,12 +24,17 @@
               },
               animation: {
                 'fade-in': 'fadeIn 0.5s ease-in',
+                'float': 'float 1s ease-in-out infinite',
               },
               keyframes: {
                 fadeIn: {
                   '0%': { opacity: '0' },
                   '100%': { opacity: '1' },
-                }
+                },
+                float: {
+                  '0%, 100%': { transform: 'translateY(0)' },
+                  '50%': { transform: 'translateY(-10px)' },
+                },
               }
             }
           }
@@ -36,10 +42,9 @@
     </script>
     <style>
         /* Smooth scrolling */
-        html {
+        HTML {
           scroll-behavior: smooth;
         }
-
         .content-overlay {
           position: relative;
           background: linear-gradient(135deg, rgba(246, 104, 2, 0.98) 0%, rgba(255,255,255,0.98) 100%);
@@ -60,7 +65,9 @@
         .nav-link {
           position: relative;
         }
-
+        .nav-link:hover::after {
+          width: 100%;
+        }
         .nav-link:after {
           content: '';
           position: absolute;
@@ -174,39 +181,35 @@
 <div class="content-overlay">
 
     <!-- Navbar -->
+
+    <!-- Navbar -->
     <header class="bg-cvcDark text-white sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <a href="index.html" class="flex items-center focus:outline-none">
-                    <picture>
-                        <source srcset="logo.png" type="image/png">
-                        <img src="logo.png" alt="Cincinnati Volleyball Club" width="40" height="40" class="h-10 hover:opacity-90 transition" loading="eager">
-                    </picture>
+                <a href="index.html" class="flex items-center">
+                    <img src="logo.png" alt="Cincinnati Volleyball Club" class="h-10 hover:opacity-90 transition" />
                     <span class="text-xl font-bold text-cvcOrange">Cincinnati Volleyball Club</span>
                 </a>
             </div>
             <nav class="desktop-menu space-x-6 hidden md:flex">
                 <a href="index.html" class="text-white hover:text-cvcOrange nav-link">Home</a>
-                <a href="events.html" class="text-white hover:text-cvcOrange nav-link font-bold">Events</a>
+                <a href="events.html" class="text-white hover:text-cvcOrange nav-link">Events</a>
                 <a href="sponsorship.html" class="text-white hover:text-cvcOrange nav-link">Sponsors</a>
                 <a href="contact.html" class="text-white hover:text-cvcOrange nav-link">Contact</a>
             </nav>
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-cvcOrange animate__animated animate__fadeIn focus:outline-none" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-                    <span id="menu-icon">☰</span>
-                </button>
+                <button id="menu-toggle" class="text-cvcOrange">☰</button>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
-            <div class="flex flex-col space-y-3">
-                <a href="index.html" class="text-white hover:text-cvcOrange py-2 px-1 focus:text-cvcOrange focus:bg-white focus:bg-opacity-20">Home</a>
-                <a href="events.html" class="text-white hover:text-cvcOrange py-2 px-1 font-bold focus:text-cvcOrange focus:bg-white focus:bg-opacity-20">Events</a>
-                <a href="sponsorship.html" class="text-white hover:text-cvcOrange py-2 px-1 focus:text-cvcOrange focus:bg-white focus:bg-opacity-20">Sponsors</a>
-                <a href="contact.html" class="text-white hover:text-cvcOrange py-2 px-1 focus:text-cvcOrange focus:bg-white focus:bg-opacity-20">Contact</a>
-            </div>
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="sponsorship.html">Sponsors</a>
+            <a href="contact.html">Contact</a>
         </div>
     </header>
+
 
     <!-- Main Event Section -->
     <main class="flex-1 py-8 px-4">
@@ -366,84 +369,6 @@
     </div>
 </div>
 
-<script>
-    // Improved mobile menu toggle with better accessibility
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const menuIcon = document.getElementById("menu-icon");
-
-    // Function to toggle menu
-    function toggleMenu() {
-        const isExpanded = mobileMenu.classList.toggle("active");
-        menuToggle.setAttribute("aria-expanded", isExpanded);
-        mobileMenu.setAttribute("aria-hidden", !isExpanded);
-        menuIcon.textContent = isExpanded ? "✕" : "☰";
-
-        // Trap focus when menu is open
-        if (isExpanded) {
-            const focusableElements = mobileMenu.querySelectorAll('a[href]');
-            if (focusableElements.length > 0) {
-                focusableElements[0].focus();
-            }
-        }
-    }
-
-    // Toggle menu on click
-    menuToggle.addEventListener("click", toggleMenu);
-
-    // Close menu when clicking outside or pressing Escape
-    document.addEventListener("click", (e) => {
-        if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            closeMenu();
-        }
-    });
-
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && mobileMenu.classList.contains("active")) {
-            closeMenu();
-            menuToggle.focus();
-        }
-    });
-
-    function closeMenu() {
-        mobileMenu.classList.remove("active");
-        menuToggle.setAttribute("aria-expanded", "false");
-        mobileMenu.setAttribute("aria-hidden", "true");
-        menuIcon.textContent = "☰";
-    }
-
-    // Back to top button
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTop.classList.remove('opacity-0', 'invisible');
-            backToTop.classList.add('opacity-100', 'visible');
-        } else {
-            backToTop.classList.add('opacity-0', 'invisible');
-            backToTop.classList.remove('opacity-100', 'visible');
-        }
-    });
-
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Improved keyboard navigation for mobile menu
-    mobileMenu.addEventListener('keydown', (e) => {
-        const focusableElements = mobileMenu.querySelectorAll('a[href]');
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (e.key === 'Tab') {
-            if (e.shiftKey && document.activeElement === firstElement) {
-                e.preventDefault();
-                lastElement.focus();
-            } else if (!e.shiftKey && document.activeElement === lastElement) {
-                e.preventDefault();
-                firstElement.focus();
-            }
-        }
-    });
-</script>
+<script src="script.js"></script>
 </body>
 </html>
