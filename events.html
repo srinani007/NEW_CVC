@@ -9,7 +9,6 @@
     <!-- Preload critical resources -->
     <link rel="preload" href="logo.png" as="image" imagesrcset="logo.png" imagesizes="100vw">
     <link rel="preload" href="QRCODE%20CVC.png" as="image" imagesrcset="QRCODE%20CVC.png" imagesizes="128px">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,17 +23,12 @@
               },
               animation: {
                 'fade-in': 'fadeIn 0.5s ease-in',
-                'float': 'float 1s ease-in-out infinite',
               },
               keyframes: {
                 fadeIn: {
                   '0%': { opacity: '0' },
                   '100%': { opacity: '1' },
-                },
-                float: {
-                  '0%, 100%': { transform: 'translateY(0)' },
-                  '50%': { transform: 'translateY(-10px)' },
-                },
+                }
               }
             }
           }
@@ -65,9 +59,6 @@
         .nav-link {
           position: relative;
         }
-        .nav-link:hover::after {
-          width: 100%;
-        }
         .nav-link:after {
           content: '';
           position: absolute;
@@ -94,7 +85,7 @@
           padding: 0 1rem;
           z-index: 100;
           backdrop-filter: blur(5px);
-          transition: max-height 0.3s ease-out;
+          transition: max-height 0.3s ease-out, padding 0.3s ease-out;
         }
 
         .mobile-menu.active {
@@ -145,10 +136,6 @@
             transition-duration: 0.01ms !important;
             scroll-behavior: auto !important;
           }
-
-          .btn-hover:hover, .qr-code:hover {
-            transform: none !important;
-          }
         }
 
         /* View transitions */
@@ -157,30 +144,12 @@
             view-transition-name: event-poster;
           }
         }
-
-        /* Mobile menu improvements */
-        @media (max-width: 767px) {
-          .mobile-menu {
-            width: 100%;
-          }
-
-          .mobile-menu a {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-          }
-
-          .mobile-menu a:last-child {
-            border-bottom: none;
-          }
-        }
     </style>
 </head>
 <body class="font-sans text-gray-800">
 
 <!-- Main Content -->
 <div class="content-overlay">
-
-    <!-- Navbar -->
 
     <!-- Navbar -->
     <header class="bg-cvcDark text-white sticky top-0 z-50 shadow-lg">
@@ -193,20 +162,20 @@
             </div>
             <nav class="desktop-menu space-x-6 hidden md:flex">
                 <a href="index.html" class="text-white hover:text-cvcOrange nav-link">Home</a>
-                <a href="events.html" class="text-white hover:text-cvcOrange nav-link">Events</a>
+                <a href="events.html" class="text-white hover:text-cvcOrange nav-link font-bold">Events</a>
                 <a href="sponsorship.html" class="text-white hover:text-cvcOrange nav-link">Sponsors</a>
                 <a href="contact.html" class="text-white hover:text-cvcOrange nav-link">Contact</a>
             </nav>
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-cvcOrange">☰</button>
+                <button id="menu-toggle" class="text-cvcOrange" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
             </div>
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu">
-            <a href="index.html">Home</a>
-            <a href="events.html">Events</a>
-            <a href="sponsorship.html">Sponsors</a>
-            <a href="contact.html">Contact</a>
+            <a href="index.html" class="block text-white hover:text-cvcOrange py-2 px-1">Home</a>
+            <a href="events.html" class="block text-white hover:text-cvcOrange py-2 px-1 font-bold">Events</a>
+            <a href="sponsorship.html" class="block text-white hover:text-cvcOrange py-2 px-1">Sponsors</a>
+            <a href="contact.html" class="block text-white hover:text-cvcOrange py-2 px-1">Contact</a>
         </div>
     </header>
 
@@ -367,6 +336,7 @@
         </a>
     </div>
 </div>
+
 
 <script src="script.js"></script>
 </body>
